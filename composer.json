@@ -1,0 +1,37 @@
+{
+    "name": "keune/omnipay-lidio",
+    "type": "library",
+    "require": {
+        "php": "^8.5",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "omnipay/common": "^3.4",
+        "php-http/react-adapter": "^4.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Keune\\OmnipayLidio\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "keune",
+            "email": "ahmetkun@gmail.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Keune\\OmnipayLidio\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.85",
+        "phpunit/phpunit": "^13.0"
+    }
+}
