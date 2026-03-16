@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class DeleteCardRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'DeleteCard';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return DeleteCardResponse::class;
-    }
-
     public function getCustomerId(): ?string
     {
         return $this->getParameter('customerId');
@@ -31,5 +21,15 @@ class DeleteCardRequest extends AbstractLidioRequest
             'customerId' => $this->getCustomerId(),
             'clientIp' => $this->getClientIp() ?? '',
         ];
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'DeleteCard';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return DeleteCardResponse::class;
     }
 }

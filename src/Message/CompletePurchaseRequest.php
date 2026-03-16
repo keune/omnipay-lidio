@@ -2,18 +2,10 @@
 
 namespace Keune\OmnipayLidio\Message;
 
+use Keune\OmnipayLidio\PaymentInstrument;
+
 class CompletePurchaseRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'FinishPaymentProcess';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return CompletePurchaseResponse::class;
-    }
-
     public function getPaymentInstrument(): ?string
     {
         return $this->getParameter('paymentInstrument');
@@ -86,7 +78,7 @@ class CompletePurchaseRequest extends AbstractLidioRequest
 
     public function getData(): array
     {
-        $instrument = $this->getPaymentInstrument() ?? 'newCard';
+        $instrument = $this->getPaymentInstrument() ?? PaymentInstrument::NewCard->value;
 
         $data = [
             'orderId' => $this->getTransactionId() ?? $this->getOrderId(),
@@ -95,8 +87,6 @@ class CompletePurchaseRequest extends AbstractLidioRequest
             'currency' => $this->getCurrency(),
             'paymentInstrument' => $instrument,
             'clientIp' => $this->getClientIp(),
-            'clientPort' => $this->getClientPort() ?? '',
-            'clientType' => $this->getClientType() ?? 'Web',
         ];
 
         if ($this->getPaymentInstrumentInfo()) {
@@ -129,5 +119,15 @@ class CompletePurchaseRequest extends AbstractLidioRequest
         }
 
         return $data;
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'FinishPaymentProcess';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return CompletePurchaseResponse::class;
     }
 }

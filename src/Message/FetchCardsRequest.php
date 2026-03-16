@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class FetchCardsRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'GetCardList';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return FetchCardsResponse::class;
-    }
-
     public function getCustomerId(): ?string
     {
         return $this->getParameter('customerId');
@@ -52,5 +42,15 @@ class FetchCardsRequest extends AbstractLidioRequest
             'email' => $this->getEmail(),
             'clientIp' => $this->getClientIp() ?? '',
         ];
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'GetCardList';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return FetchCardsResponse::class;
     }
 }

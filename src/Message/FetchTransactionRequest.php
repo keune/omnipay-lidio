@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class FetchTransactionRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'PaymentInquiry';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return FetchTransactionResponse::class;
-    }
-
     public function getPaymentInstrument(): ?string
     {
         return $this->getParameter('paymentInstrument');
@@ -76,5 +66,15 @@ class FetchTransactionRequest extends AbstractLidioRequest
         }
 
         return $data;
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'PaymentInquiry';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return FetchTransactionResponse::class;
     }
 }

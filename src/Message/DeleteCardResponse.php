@@ -2,6 +2,4 @@
 
 namespace Keune\OmnipayLidio\Message;
 
-class DeleteCardResponse extends AbstractLidioResponse
-{
-}
+class DeleteCardResponse extends AbstractLidioResponse {}

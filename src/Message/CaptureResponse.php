@@ -2,6 +2,4 @@
 
 namespace Keune\OmnipayLidio\Message;
 
-class CaptureResponse extends AbstractLidioResponse
-{
-}
+class CaptureResponse extends AbstractLidioResponse {}

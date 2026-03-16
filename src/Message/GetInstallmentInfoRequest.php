@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class GetInstallmentInfoRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'GetInstallmentInfo';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return GetInstallmentInfoResponse::class;
-    }
-
     public function getBin(): ?string
     {
         return $this->getParameter('bin');
@@ -52,5 +42,15 @@ class GetInstallmentInfoRequest extends AbstractLidioRequest
             'posId' => $this->getPosId() ?? 0,
             'cardCategory' => $this->getCardCategory(),
         ];
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'GetInstallmentInfo';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return GetInstallmentInfoResponse::class;
     }
 }

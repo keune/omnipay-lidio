@@ -12,28 +12,14 @@ abstract class AbstractLidioRequest extends AbstractRequest
     protected const BASE_URL_TEST = 'https://test.lidio.com/api';
     protected const BASE_URL_PROD = 'https://lidio.com/api';
 
-    abstract protected function getEndpoint(): string;
-
-    abstract protected function getResponseClass(): string;
-
     public function getBaseUrl(): string
     {
         return $this->getTestMode() ? self::BASE_URL_TEST : self::BASE_URL_PROD;
     }
 
-    protected function getHeaders(): array
-    {
-        return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'MerchantCode' => $this->getMerchantCode(),
-            'Authorization' => $this->getAuthorizationToken(),
-        ];
-    }
-
     public function sendData($data): AbstractLidioResponse
     {
-        $url = $this->getBaseUrl() . '/' . $this->getEndpoint();
+        $url = $this->getBaseUrl().'/'.$this->getEndpoint();
 
         $httpResponse = $this->httpClient->request(
             'POST',
@@ -129,5 +115,19 @@ abstract class AbstractLidioRequest extends AbstractRequest
     public function setCustomParameters(mixed $value): self
     {
         return $this->setParameter('customParameters', $value);
+    }
+
+    abstract protected function getEndpoint(): string;
+
+    abstract protected function getResponseClass(): string;
+
+    protected function getHeaders(): array
+    {
+        return [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'MerchantCode' => $this->getMerchantCode(),
+            'Authorization' => $this->getAuthorizationToken(),
+        ];
     }
 }

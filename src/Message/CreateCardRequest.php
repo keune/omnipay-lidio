@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class CreateCardRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'SaveCard';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return CreateCardResponse::class;
-    }
-
     public function getVerificationOtp(): ?string
     {
         return $this->getParameter('verificationOtp');
@@ -28,7 +18,7 @@ class CreateCardRequest extends AbstractLidioRequest
     {
         $card = $this->getCard();
 
-        $data = [
+        return [
             'customerInfo' => $this->getCustomerInfo(),
             'cardHolderName' => $card ? $card->getName() : null,
             'cardNumber' => $card ? $card->getNumber() : null,
@@ -37,7 +27,15 @@ class CreateCardRequest extends AbstractLidioRequest
             'verificationOtp' => $this->getVerificationOtp(),
             'clientIP' => $this->getClientIp() ?? '',
         ];
+    }
 
-        return $data;
+    protected function getEndpoint(): string
+    {
+        return 'SaveCard';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return CreateCardResponse::class;
     }
 }

@@ -2,6 +2,4 @@
 
 namespace Keune\OmnipayLidio\Message;
 
-class RefundResponse extends AbstractLidioResponse
-{
-}
+class RefundResponse extends AbstractLidioResponse {}

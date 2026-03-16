@@ -4,6 +4,4 @@ namespace Keune\OmnipayLidio\Exception;
 
 use Omnipay\Common\Exception\InvalidResponseException;
 
-class InvalidTdsDataException extends InvalidResponseException
-{
-}
+class InvalidTdsDataException extends InvalidResponseException {}

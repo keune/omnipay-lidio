@@ -8,13 +8,13 @@ class PurchaseResponse extends AbstractLidioResponse implements RedirectResponse
 {
     public function isRedirect(): bool
     {
-        return $this->data['result'] === 'RedirectFormCreated'
-            || $this->data['result'] === 'VerificationRequired';
+        return 'RedirectFormCreated' === $this->data['result']
+            || 'VerificationRequired' === $this->data['result'];
     }
 
     public function isRedirectFormCreated(): bool
     {
-        return $this->data['result'] === 'RedirectFormCreated';
+        return 'RedirectFormCreated' === $this->data['result'];
     }
 
     public function isVerificationRequired(): bool

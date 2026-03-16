@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class GetBankOfBinNumberRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'GetBankOfBINNumber';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return GetBankOfBinNumberResponse::class;
-    }
-
     public function getBin(): ?string
     {
         return $this->getParameter('bin');
@@ -62,26 +52,36 @@ class GetBankOfBinNumberRequest extends AbstractLidioRequest
             'bin' => $this->getBin(),
         ];
 
-        if ($this->getClientType() !== null) {
+        if (null !== $this->getClientType()) {
             $data['clientType'] = $this->getClientType();
         }
 
-        if ($this->getClientIp() !== null) {
+        if (null !== $this->getClientIp()) {
             $data['clientIp'] = $this->getClientIp();
         }
 
-        if ($this->getClientPort() !== null) {
+        if (null !== $this->getClientPort()) {
             $data['clientPort'] = (int) $this->getClientPort();
         }
 
-        if ($this->getClientUserAgent() !== null) {
+        if (null !== $this->getClientUserAgent()) {
             $data['clientUserAgent'] = $this->getClientUserAgent();
         }
 
-        if ($this->getClientInfo() !== null) {
+        if (null !== $this->getClientInfo()) {
             $data['clientInfo'] = $this->getClientInfo();
         }
 
         return $data;
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'GetBankOfBINNumber';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return GetBankOfBinNumberResponse::class;
     }
 }

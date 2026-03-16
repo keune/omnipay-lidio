@@ -2,20 +2,11 @@
 
 namespace Keune\OmnipayLidio\Message;
 
+use Keune\OmnipayLidio\PaymentInstrument;
 use Omnipay\Common\CreditCard;
 
 class PurchaseRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'ProcessPayment';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return PurchaseResponse::class;
-    }
-
     // Purchase-specific parameters
 
     public function getPaymentInstrument(): ?string
@@ -221,7 +212,7 @@ class PurchaseRequest extends AbstractLidioRequest
                 $card->validate();
             }
 
-            $data['paymentInstrument'] = 'newCard';
+            $data['paymentInstrument'] = PaymentInstrument::NewCard->value;
             $data['paymentInstrumentInfo'] = [
                 'newCard' => [
                     'processType' => $this->getProcessType(),
@@ -271,5 +262,15 @@ class PurchaseRequest extends AbstractLidioRequest
         }
 
         return $data;
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'ProcessPayment';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return PurchaseResponse::class;
     }
 }

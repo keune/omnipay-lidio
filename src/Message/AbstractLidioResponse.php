@@ -8,7 +8,7 @@ class AbstractLidioResponse extends AbstractResponse
 {
     public function isSuccessful(): bool
     {
-        return isset($this->data['result']) && $this->data['result'] === 'Success';
+        return isset($this->data['result']) && 'Success' === $this->data['result'];
     }
 
     public function getMessage(): ?string

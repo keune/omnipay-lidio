@@ -4,16 +4,6 @@ namespace Keune\OmnipayLidio\Message;
 
 class RefundRequest extends AbstractLidioRequest
 {
-    protected function getEndpoint(): string
-    {
-        return 'Refund';
-    }
-
-    protected function getResponseClass(): string
-    {
-        return RefundResponse::class;
-    }
-
     public function getRefundTransId(): ?string
     {
         return $this->getParameter('refundTransId');
@@ -33,5 +23,15 @@ class RefundRequest extends AbstractLidioRequest
             'currency' => $this->getCurrency(),
             'clientIp' => $this->getClientIp(),
         ];
+    }
+
+    protected function getEndpoint(): string
+    {
+        return 'Refund';
+    }
+
+    protected function getResponseClass(): string
+    {
+        return RefundResponse::class;
     }
 }
