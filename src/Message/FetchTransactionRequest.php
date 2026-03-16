@@ -59,7 +59,7 @@ class FetchTransactionRequest extends AbstractLidioRequest
                 'card' => [
                     'processType' => $this->getProcessType(),
                     'posAccount' => [
-                        'id' => $this->getPosAccountId() ?? 1,
+                        'id' => $this->getPosAccountId() ?? 0,
                     ],
                 ],
             ];
