@@ -75,6 +75,11 @@ class Gateway extends AbstractGateway
         return $this->createRequest(Message\FetchCardsRequest::class, $options);
     }
 
+    public function fetchCard(array $options = []): Message\FetchCardRequest
+    {
+        return $this->createRequest(Message\FetchCardRequest::class, $options);
+    }
+
     public function getBankOfBinNumber(array $options = []): Message\GetBankOfBinNumberRequest
     {
         return $this->createRequest(Message\GetBankOfBinNumberRequest::class, $options);

@@ -271,6 +271,25 @@ if ($response->isSuccessful()) {
 }
 ```
 
+#### Fetch Card Info
+
+```php
+$response = $gateway->fetchCard([
+    'cardToken' => 'card-token-or-masked-number',
+    'email' => 'john@example.com',
+    // or 'customerId' => '12345',
+    'clientIp' => '127.0.0.1',
+])->send();
+
+if ($response->isSuccessful()) {
+    $card = $response->getCard();
+    $card->getMaskedCardNumber();
+    $card->getCardType();
+    $card->isExpired();
+    $card->isFinishPaymentRequired();
+}
+```
+
 #### Delete a Card
 
 ```php
@@ -294,6 +313,7 @@ $response = $gateway->deleteCard([
 | `getInstallmentInfo()` | `GetInstallmentInfo` | Get installment options      |
 | `createCard()`       | `SaveCard`             | Save a card for future use   |
 | `deleteCard()`       | `DeleteCard`           | Delete a stored card         |
+| `fetchCard()`        | `TokenToCardInfoInquiry` | Get a stored card's info   |
 | `fetchCards()`       | `GetCardList`          | List stored cards            |
 | `getBankOfBinNumber()` | `GetBankOfBINNumber` | Get bank info by BIN number  |
 

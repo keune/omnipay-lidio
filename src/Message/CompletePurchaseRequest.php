@@ -87,6 +87,8 @@ class CompletePurchaseRequest extends AbstractLidioRequest
             'currency' => $this->getCurrency(),
             'paymentInstrument' => $instrument,
             'clientIp' => $this->getClientIp(),
+            'clientPort' => $this->getClientPort() ?? '',
+            'clientType' => $this->getClientType() ?? 'Web',
         ];
 
         if ($this->getPaymentInstrumentInfo()) {

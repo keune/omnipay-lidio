@@ -120,7 +120,7 @@ class CardManagementTest extends TestCase
 
         $this->assertTrue($response->isSuccessful());
         $this->assertCount(2, $response->getCards());
-        $this->assertSame('tok-1', $response->getCards()[0]['cardToken']);
+        $this->assertSame('tok-1', $response->getCards()[0]->getCardToken());
     }
 
     public function testFetchCardsResponseEmpty(): void

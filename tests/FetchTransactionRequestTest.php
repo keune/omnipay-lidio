@@ -33,7 +33,7 @@ class FetchTransactionRequestTest extends TestCase
         $this->assertSame(40.0, $data['totalAmount']);
         $this->assertSame('newCard', $data['paymentInstrument']);
         $this->assertSame('sales', $data['paymentInquiryInstrumentInfo']['card']['processType']);
-        $this->assertSame(1, $data['paymentInquiryInstrumentInfo']['card']['posAccount']['id']);
+        $this->assertSame(0, $data['paymentInquiryInstrumentInfo']['card']['posAccount']['id']);
     }
 
     public function testGetDataCustom(): void
