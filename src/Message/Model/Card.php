@@ -108,4 +108,9 @@ class Card extends AbstractModel
     {
         return $this->get('matchingPhoneTipList');
     }
+
+    public function isCardSaved(): ?bool
+    {
+        return $this->get('isCardSaved');
+    }
 }

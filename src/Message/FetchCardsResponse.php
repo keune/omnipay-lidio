@@ -7,16 +7,16 @@ use Keune\OmnipayLidio\Message\Model\Card;
 class FetchCardsResponse extends AbstractLidioResponse
 {
     /**
-     * @return Card[]|null
+     * @return null|Card[]
      */
     public function getCards(): ?array
     {
         $cardList = $this->data['cardList'] ?? null;
 
-        if ($cardList === null) {
+        if (null === $cardList) {
             return null;
         }
 
-        return array_map(static fn(array $card) => new Card($card), $cardList);
+        return array_map(static fn (array $card) => new Card($card), $cardList);
     }
 }

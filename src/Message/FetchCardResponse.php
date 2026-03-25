@@ -15,7 +15,7 @@ class FetchCardResponse extends AbstractLidioResponse
     {
         $cardInfo = $this->data['cardInfo'] ?? null;
 
-        if ($cardInfo === null) {
+        if (null === $cardInfo) {
             return null;
         }
 
