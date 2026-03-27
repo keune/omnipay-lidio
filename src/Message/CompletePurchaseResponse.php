@@ -3,6 +3,7 @@
 namespace Keune\OmnipayLidio\Message;
 
 use Keune\OmnipayLidio\Message\Model\Card;
+use Keune\OmnipayLidio\Message\Model\CompletePurchaseResultCategory;
 use Keune\OmnipayLidio\Message\Model\PosResult;
 
 class CompletePurchaseResponse extends AbstractLidioResponse
@@ -35,6 +36,15 @@ class CompletePurchaseResponse extends AbstractLidioResponse
     {
         if (isset($this->data['paymentInfo']['acquirerResultDetail']['pos']['posId'])) {
             return new PosResult($this->data['paymentInfo']['acquirerResultDetail']['pos']);
+        }
+
+        return null;
+    }
+
+    public function getCompletePurchaseResultCategory(): ?CompletePurchaseResultCategory
+    {
+        if (isset($this->data['paymentInfo']['resultCategory']['categoryCode'])) {
+            return new CompletePurchaseResultCategory($this->data['paymentInfo']['resultCategory']);
         }
 
         return null;
