@@ -2,7 +2,7 @@
 
 namespace Keune\OmnipayLidio\Message\Model;
 
-class CompletePurchaseResultCategory extends AbstractModel
+class PurchaseResultCategory extends AbstractModel
 {
     public function getCategoryCode(): ?string
     {
