@@ -138,8 +138,19 @@ class Gateway extends AbstractGateway
         $hashData = $orderId.':'.$this->getMerchantKey().':'.$formattedCallback.':'.$result.':'.$customerIdentifier;
         $expectedHash = base64_encode(hash('sha256', $hashData, true));
 
-        if (!hash_equals($expectedHash, $hash ?? '')) {
-            throw new InvalidTdsDataException('Hash verification failed.');
+        if (null === $hash) {
+            throw new InvalidTdsDataException('Hash is missing.');
+        }
+        if (!hash_equals($expectedHash, $hash)) {
+            // if hash coming from get parameter contains spaces, replace them with '+' and try again
+            if (str_contains($hash, ' ')) {
+                $hash = str_replace(' ', '+', $hash);
+                if (!hash_equals($expectedHash, $hash)) {
+                    throw new InvalidTdsDataException('Hash verification failed.');
+                }
+            } else {
+                throw new InvalidTdsDataException('Hash verification failed.');
+            }
         }
 
         return $callbackData;
